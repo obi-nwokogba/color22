@@ -9,11 +9,6 @@ export default function ShadeCell(props) {
   let { currentColorHex, setCurrentColorHex } =
     useContext(CurrentColorContext) ?? {};
 
-  /*
-  function setNewColor(newColorHex) {
-    const theme = useContext(CurrentColorContext);
-  } */
-
   return (
     <div className="shadeCellContainer">
       <div
