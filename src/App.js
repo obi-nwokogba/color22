@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, useRef, useEffect, createContext } from "react";
 
 import "./styles.css";
 import BigTextDisplay from "./BigTextDisplay";
@@ -8,11 +8,18 @@ import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
+import { color } from "framer-motion";
 
 export const CurrentColorContext = createContext(null);
 
 function App() {
   const [currentColorHex, setCurrentColorHex] = useState("#1E7BF3");
+  let colorHistory = [currentColorHex];
+  let previousColor = useRef(currentColorHex);
+
+  useEffect(() => {
+    colorHistory.push(previousColor.current);
+  });
 
   // Everytime the a new color is picked/clicked and currentColorHex is changed
   useEffect(() => {
@@ -24,12 +31,17 @@ function App() {
     changeGValue(newGValue);
     changeBValue(newBValue);
 
-    setSliderRPosition(newRValue);
-    setSliderGPosition(newGValue);
-    setSliderBPosition(newBValue);
+    let rPositionValue = -355 + (newRValue / 255) * 670;
+    let gPositionValue = -355 + (newGValue / 255) * 670;
+    let bPositionValue = -355 + (newBValue / 255) * 670;
+
+    setSliderRPosition(rPositionValue);
+    setSliderGPosition(gPositionValue);
+    setSliderBPosition(bPositionValue);
 
     setHSLValue(RGBToHSL(newRValue, newGValue, newBValue));
 
+    colorHistory.push("latest");
     // Scroll to top of page
     window.scrollTo({
       top: 0,
@@ -79,12 +91,12 @@ function App() {
 
     if (colorComponent === "R") {
       changeRValue(Number(data));
-      let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      // let trueValue = Math.floor(((data.x + 335) / 670) * 255);
-      // let newXPosition = trueValue;
+      // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      let newXPosition = -355 + (data / 255) * 670;
       if (hasBeenReleased) {
         changeSliderRPosition(newXPosition);
       }
+      changeSliderRPosition(newXPosition);
     }
 
     if (colorComponent === "G") {
@@ -189,12 +201,14 @@ function App() {
 
   return (
     <>
+      <div className="topLogoBrand">color22</div>
       <div className="appContainer">
         <CurrentColorContext.Provider
           value={{ currentColorHex, setCurrentColorHex }}
         >
-          <span className="appTitle" style={{ color: currentColorHex }}>
-            color22 <span className="lighter2 smaller"></span>
+          <span className="colorHistoryText">
+            HISTORY
+            <span className="lighter2 smaller">{colorHistory}</span>
           </span>
 
           <div className="displayColorContainer">

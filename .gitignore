@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-# production
-/build
+# production - allow build, so ready to run, hostable version can be downloaded easily
+# /build
 
 # misc
 .DS_Store

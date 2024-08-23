@@ -12,22 +12,33 @@ body {
   font-weight: 400;
 }
 
+.topLogoBrand {
+  color: gray;
+  display: block;
+  text-align: center;
+  font-weight: 800;
+  font-size: 3.82em;
+  opacity: 0.17;
+  margin-bottom: -20px;
+}
+
 .appContainer {
+  z-index: 1;
   font-family: "Hanken Grotesk", sans-serif;
   font-family: sans-serif;
   text-align: center;
-  color: #626262;
+  color: #444444;
   background-color: #f7f7f7;
   max-width: 700px;
   padding: 30px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 15px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  -moz-box-shadow: 0 0 33px #ccc;
+  -moz-box-shadow: 0 0 33px #ccccccad;
   -webkit-box-shadow: 0 0 33px #ccccccad;
-  box-shadow: 0 0 33px #ccc;
+  box-shadow: 0 0 33px #ccccccad;
 }
 
 h1,
@@ -62,11 +73,11 @@ h3.swatchHeader {
   opacity: 0.2;
 }
 
-.appTitle {
-  font-weight: 300;
-  color: rgb(208, 208, 208);
+.colorHistoryText {
+  font-weight: 400;
+  color: rgb(160, 160, 160);
   text-align: left;
-  font-size: 1.9em;
+  font-size: 1.2em;
   text-transform: uppercase;
 }
 
@@ -96,7 +107,7 @@ h3.swatchHeader {
   border-bottom: solid 2px rgb(232, 232, 232);
   display: block;
   padding: 6px 0px 5px 0px;
-  font-weight: 600;
+  font-weight: 500;
   margin-top: -2px;
   width: 450px;
 }
