@@ -138,7 +138,7 @@ h3.swatchHeader {
   width: 50px;
   height: 40px;
   border-radius: 20px;
-  background-color: #cccccc;
+  background-color: #acacac;
   border: solid 2px none;
   margin: auto;
   user-select: none;
@@ -151,8 +151,8 @@ h3.swatchHeader {
 
 .sliderControl:hover {
   background-color: #5d5d5d;
-  min-width: 60px;
-  height: 60px;
+  /* min-width: 60px;
+  height: 60px; */
   transition-duration: 200ms;
 }
 
