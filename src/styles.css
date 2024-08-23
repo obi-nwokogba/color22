@@ -2,7 +2,7 @@ html {
   font-family: "Hanken Grotesk", sans-serif;
   box-sizing: border-box;
   font-size: 15px;
-  background-color: #e4e4e4;
+  background-color: #ebebeb;
   font-weight: 400;
 }
 
@@ -21,11 +21,12 @@ body {
   max-width: 700px;
   padding: 30px;
   margin: auto;
+  margin-top: 30px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   -moz-box-shadow: 0 0 33px #ccc;
-  -webkit-box-shadow: 0 0 33px #ccc;
+  -webkit-box-shadow: 0 0 33px #ccccccad;
   box-shadow: 0 0 33px #ccc;
 }
 
@@ -95,7 +96,7 @@ h3.swatchHeader {
   border-bottom: solid 2px rgb(232, 232, 232);
   display: block;
   padding: 6px 0px 5px 0px;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: -2px;
   width: 450px;
 }
@@ -134,7 +135,7 @@ h3.swatchHeader {
   min-height: 40px;
   max-width: 40px;
   max-height: 40px;
-  width: 40px;
+  width: 50px;
   height: 40px;
   border-radius: 20px;
   background-color: #cccccc;
@@ -226,7 +227,10 @@ h3.swatchHeader {
   margin-top: 0px;
   padding: 6px;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.4;
+  font-size: 0.8em;
+  border-radius: 8px;
+  padding-bottom: 9px;
 }
 
 .shadeCellCopyButton:hover {

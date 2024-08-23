@@ -20,7 +20,7 @@ export default function ShadeCell(props) {
         onClick={() => {
           setCurrentColorHex(props.hex);
         }}
-        class="shadeCell"
+        className="shadeCell"
         style={{
           backgroundColor: `hsl(${props.hue},
               ${props.sat}%,

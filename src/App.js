@@ -51,6 +51,7 @@ function App() {
   const changeSliderRPosition = (newValue) => setSliderRPosition(newValue);
   const changeSliderGPosition = (newValue) => setSliderGPosition(newValue);
   const changeSliderBPosition = (newValue) => setSliderBPosition(newValue);
+
   const changeSliderGrayPosition = (newValue) =>
     setSliderGrayPosition(newValue);
 
@@ -63,7 +64,6 @@ function App() {
   let [grayValue, setGrayValue] = useState(127);
 
   const changeHexValue = (r, g, b) => setCurrentColorHex(rgbToHex(r, g, b));
-
   const changeGrayValue = (newValue) => setGrayValue(grayWasPicked(newValue));
 
   const changeHSLValue = (newHSLArray) =>
@@ -79,7 +79,9 @@ function App() {
 
     if (colorComponent === "R") {
       changeRValue(Number(data));
-      let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      let trueValue = Math.floor(((data.x + 335) / 670) * 255);
+      let newXPosition = trueValue;
       changeSliderRPosition(newXPosition);
     }
 
