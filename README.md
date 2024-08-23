@@ -1,8 +1,8 @@
 # Coloreth
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Coloreth is a web app for picking and discovering colors. [Obi Nwokogba](https://obilo.io/).
 
-## Available Scripts
+## Features of Coloreth
 
 In the project directory, you can run:
 
