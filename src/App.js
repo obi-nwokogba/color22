@@ -2,8 +2,10 @@ import { useState, useEffect, createContext, useContext } from "react";
 
 import "./styles.css";
 import BigTextDisplay from "./BigTextDisplay";
+import Shades from "./Shades";
 import ColorSampleCircle from "./ColorSampleCircle";
 import Footer from "./Footer";
+import Variants from "./Variants";
 
 function App() {
   const [currentColorHex, setCurrentColorHex] = useState("#1E7BF3");
@@ -45,6 +47,17 @@ function App() {
               currentColorHex={`hsl(${HSLValueArray[0]}, ${HSLValueArray[1]}%, ${HSLValueArray[2]}%)`}
             />
           </div>
+
+          <Shades
+            func={setNewColor}
+            currentColorHSLArray={HSLValueArray}
+            currentColorHex={currentColorHex}
+          />
+
+          <Variants
+            currentColorHSLArray={HSLValueArray}
+            currentColorHex={currentColorHex}
+          />
         </div>
 
         <div className="RGBSliderContainer"></div>
