@@ -30,13 +30,14 @@ function App() {
     changeGValue(newGValue);
     changeBValue(newBValue);
 
-    let rPositionValue = -355 + (newRValue / 255) * 650;
-    let gPositionValue = -355 + (newGValue / 255) * 650;
-    let bPositionValue = -355 + (newBValue / 255) * 650;
+    // Old formula:  -355 + (newGValue / 255) * 650;
+    let rPositionValue = -355 + Math.floor((newRValue / 255) * 670) + 21;
+    let gPositionValue = -355 + Math.floor((newGValue / 255) * 670) + 21;
+    let bPositionValue = -355 + Math.floor((newBValue / 255) * 670) + 21;
 
     setSliderRPosition(rPositionValue);
-    //setSliderGPosition(gPositionValue);
-    // setSliderBPosition(bPositionValue);
+    setSliderGPosition(gPositionValue);
+    setSliderBPosition(bPositionValue);
 
     setHSLValue(RGBToHSL(newRValue, newGValue, newBValue));
 
@@ -88,19 +89,15 @@ function App() {
     // changeHSLValue([(RValue, GValue, BValue)]);
 
     if (colorComponent === "R") {
-      changeRValue(Number(data));
+      console.log(colorComponent);
+      console.log("DATA variable is: ", JSON.stringify(data));
+      console.log("Has been release: ", JSON.stringify(hasBeenReleased));
 
-      // console.log(colorComponent);
-      // console.log('DATA variable is: ',JSON.stringify(data));
-      // console.log("Has been release: ", JSON.stringify(hasBeenReleased));
-
-      // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      let newXPosition = -355 + Math.floor((data / 255) * 670);
-      console.log(`newXPosition for RED is ${newXPosition}`);
+      changeRValue(data);
+      let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
         changeSliderRPosition(newXPosition);
       }
-      // changeSliderRPosition(newXPosition);
     }
 
     if (colorComponent === "G") {
@@ -109,8 +106,7 @@ function App() {
       console.log("Has been release: ", JSON.stringify(hasBeenReleased));
 
       changeGValue(data);
-      // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      let newXPosition = -355 + Math.floor((data / 255) * 650);
+      let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
         changeSliderGPosition(newXPosition);
       }
@@ -121,22 +117,17 @@ function App() {
       console.log("DATA variable is: ", JSON.stringify(data));
       console.log("Has been release: ", JSON.stringify(hasBeenReleased));
       changeBValue(Number(data));
-      // let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      let newXPosition = -355 + Math.floor((data / 255) * 670);
+      let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
-        //
+        changeSliderBPosition(newXPosition);
       }
-      changeSliderBPosition(newXPosition);
     }
+
     if (colorComponent === "GRAY") {
-      console.log(colorComponent);
-      console.log("DATA variable is: ", JSON.stringify(data));
-      console.log("Has been release: ", JSON.stringify(hasBeenReleased));
-      changeGrayValue(Number(data));
-      // let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      let newXPosition = -355 + Math.floor((data / 255) * 670);
+      changeGrayValue(data);
+      let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
-        // changeSliderGrayPosition(newXPosition);
+        changeSliderGrayPosition(newXPosition);
       }
     }
 
