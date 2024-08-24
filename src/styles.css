@@ -16,10 +16,11 @@ body {
   color: gray;
   display: block;
   text-align: center;
-  font-weight: 800;
-  font-size: 3.82em;
-  opacity: 0.17;
-  margin-bottom: -20px;
+  font-weight: 300;
+  font-size: 3em;
+  opacity: 0.37;
+  letter-spacing: -2px;
+  padding:8px 0px 0px 0px;
 }
 
 .appContainer {
@@ -106,10 +107,10 @@ h3.swatchHeader {
   font-size: 1.8em;
   border-bottom: solid 2px rgb(232, 232, 232);
   display: block;
-  padding: 6px 0px 5px 0px;
+  padding: 7px 0px 8px 0px;
   font-weight: 500;
   margin-top: -2px;
-  width: 450px;
+  width: 500px;
 }
 
 .displayColorContainer {

@@ -8,7 +8,6 @@ import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
-import { color } from "framer-motion";
 
 export const CurrentColorContext = createContext(null);
 
@@ -31,9 +30,9 @@ function App() {
     changeGValue(newGValue);
     changeBValue(newBValue);
 
-    let rPositionValue = -355 + (newRValue / 255) * 670;
-    let gPositionValue = -355 + (newGValue / 255) * 670;
-    let bPositionValue = -355 + (newBValue / 255) * 670;
+    let rPositionValue = -355 + (newRValue / 255) * 650;
+    let gPositionValue = -355 + (newGValue / 255) * 650;
+    let bPositionValue = -355 + (newBValue / 255) * 650;
 
     setSliderRPosition(rPositionValue);
     setSliderGPosition(gPositionValue);
@@ -50,6 +49,7 @@ function App() {
   }, [currentColorHex]);
 
   // ------ END OF MAIN useEffect. Start of state changes ------------------------
+
 
   const changeRValue = (newValue) => setRValue(newValue);
   const changeGValue = (newValue) => setGValue(newValue);
@@ -85,40 +85,63 @@ function App() {
   };
 
   let pull_data = (colorComponent, data, hasBeenReleased) => {
-    console.log(colorComponent);
-    console.log(JSON.stringify(data));
-    console.log("Has been release: ", JSON.stringify(hasBeenReleased));
+
+    // changeHexValue(RValue, GValue, BValue);
+    // changeHSLValue([(RValue, GValue, BValue)]);
 
     if (colorComponent === "R") {
       changeRValue(Number(data));
+
+      // console.log(colorComponent);
+    // console.log('DATA variable is: ',JSON.stringify(data));
+    // console.log("Has been release: ", JSON.stringify(hasBeenReleased));
+
       // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
-      let newXPosition = -355 + (data / 255) * 670;
+      let newXPosition = -355 + Math.floor((data/255) * 670);
+      console.log(`newXPosition for RED is ${newXPosition}`);
       if (hasBeenReleased) {
+
         changeSliderRPosition(newXPosition);
       }
-      changeSliderRPosition(newXPosition);
+      // changeSliderRPosition(newXPosition);
     }
 
     if (colorComponent === "G") {
-      changeGValue(Number(data));
-      let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+
+      console.log(colorComponent);
+    console.log('DATA variable is: ',JSON.stringify(data));
+    console.log("Has been release: ", JSON.stringify(hasBeenReleased));
+
+
+      changeGValue(data);
+      // let newXPosition = (45 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      let newXPosition = -355 + Math.floor((data/255) * 650);
       if (hasBeenReleased) {
-        changeSliderGPosition(newXPosition);
+        // changeSliderGPosition(newXPosition);
       }
     }
 
     if (colorComponent === "B") {
+
+      console.log(colorComponent);
+    console.log('DATA variable is: ',JSON.stringify(data));
+    console.log("Has been release: ", JSON.stringify(hasBeenReleased));
       changeBValue(Number(data));
-      let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      // let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      let newXPosition = -355 + Math.floor((data/255) * 670);
       if (hasBeenReleased) {
-        changeSliderBPosition(newXPosition);
+        // changeSliderBPosition(newXPosition);
       }
     }
     if (colorComponent === "GRAY") {
+      console.log(colorComponent);
+    console.log('DATA variable is: ',JSON.stringify(data));
+    console.log("Has been release: ", JSON.stringify(hasBeenReleased));
       changeGrayValue(Number(data));
-      let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      // let newXPosition = (50 + ((Number(data) - 145) * 640) / 245) * 1.000001;
+      let newXPosition = -355 + Math.floor((data/255) * 670);
       if (hasBeenReleased) {
-        changeSliderGrayPosition(newXPosition);
+        // changeSliderGrayPosition(newXPosition);
       }
     }
 
@@ -181,9 +204,9 @@ function App() {
 
     let rightPosition = 45 + ((Number(newValue) - 145) * 645) / 245;
 
-    setSliderRPosition(rightPosition);
-    setSliderGPosition(rightPosition);
-    setSliderBPosition(rightPosition);
+    // setSliderRPosition(rightPosition);
+    // setSliderGPosition(rightPosition);
+    // setSliderBPosition(rightPosition);
 
     changeHexValue(RValue, GValue, BValue);
     changeHSLValue([(RValue, GValue, BValue)]);
