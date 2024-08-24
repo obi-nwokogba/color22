@@ -6,11 +6,13 @@ export default function RGBSlider(props) {
   // super(props);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [sliderXPos, setSliderXPos] = useState(100);
+  const [sliderValue, setSliderValue] = useState();
 
   const trackPos = (e, data, compone, hasBeenReleased) => {
     console.log(compone, " moved");
     console.log(`data.x is ${data.x}`);
     let trueValue = Math.floor(((data.x + 335) / 670) * 255);
+    setSliderValue(trueValue);
     props.func(compone, trueValue, hasBeenReleased);
   };
 
@@ -18,6 +20,7 @@ export default function RGBSlider(props) {
     console.log(compone, " moved");
     console.log(`data.x is ${data.x}`);
     let trueValue = Math.floor(((data.x + 335) / 670) * 255);
+    setSliderValue(trueValue);
     console.log(`RGBSliderComponent. trueValue is ${trueValue}`);
     props.func(compone, trueValue, hasBeenReleased);
   };
@@ -42,7 +45,9 @@ export default function RGBSlider(props) {
           // onDrag={(e, data) => trackPos(e, data, props.colorComponent, false)}
           onStop={(e, data) => setPos(e, data, props.colorComponent, true)}
         >
-          <div className="sliderControl">{props.colorComponent}</div>
+          <div className="sliderControl">
+            {props.colorComponent} {sliderValue}
+          </div>
         </Draggable>
       </div>
     </>
