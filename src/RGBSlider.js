@@ -3,9 +3,6 @@ import { useState } from "react";
 import "./styles.css";
 
 export default function RGBSlider(props) {
-  // super(props);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [sliderXPos, setSliderXPos] = useState(100);
   const [sliderValue, setSliderValue] = useState();
 
   const trackPos = (e, data, compone, hasBeenReleased) => {

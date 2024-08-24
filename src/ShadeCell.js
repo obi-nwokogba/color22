@@ -15,6 +15,9 @@ export default function ShadeCell(props) {
         onClick={() => {
           setCurrentColorHex(props.hex);
         }}
+        onMouseEnter={() => {
+          // document.body.classList.add("background-red");
+        }}
         className="shadeCell"
         style={{
           backgroundColor: `hsl(${props.hue},
