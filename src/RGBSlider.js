@@ -9,19 +9,16 @@ export default function RGBSlider(props) {
   const [sliderValue, setSliderValue] = useState();
 
   const trackPos = (e, data, compone, hasBeenReleased) => {
-    console.log(compone, " moved");
-    console.log(`data.x is ${data.x}`);
-    let trueValue = Math.floor(((data.x + 335) / 670) * 255);
+    let newXValue = data.x <= -355 ? -355 : data.x;
+    let trueValue = Math.floor(((newXValue + 335) / 670) * 255);
     setSliderValue(trueValue);
     props.func(compone, trueValue, hasBeenReleased);
   };
 
   const setPos = (e, data, compone, hasBeenReleased) => {
-    console.log(compone, " moved");
-    console.log(`data.x is ${data.x}`);
-    let trueValue = Math.floor(((data.x + 335) / 670) * 255);
+    let newXValue = data.x <= -355 ? -355 : data.x;
+    let trueValue = Math.floor(((newXValue + 335) / 670) * 255);
     setSliderValue(trueValue);
-    console.log(`RGBSliderComponent. trueValue is ${trueValue}`);
     props.func(compone, trueValue, hasBeenReleased);
   };
 
