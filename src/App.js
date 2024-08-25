@@ -81,18 +81,11 @@ function App() {
     setHSLValue(RGBToHSL(RValue, GValue, BValue));
 
   let setNewColor = (newColorHex) => {
-    console.log(`${newColorHex} - set New Color Called!`);
+    //console.log(`${newColorHex} - set New Color Called!`);
   };
 
   let pull_data = (colorComponent, data, hasBeenReleased) => {
-    // changeHexValue(RValue, GValue, BValue);
-    // changeHSLValue([(RValue, GValue, BValue)]);
-
     if (colorComponent === "R") {
-      console.log(colorComponent);
-      console.log("DATA variable is: ", JSON.stringify(data));
-      console.log("Has been release: ", JSON.stringify(hasBeenReleased));
-
       changeRValue(data);
       let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
@@ -101,10 +94,6 @@ function App() {
     }
 
     if (colorComponent === "G") {
-      console.log(colorComponent);
-      console.log("DATA variable is: ", JSON.stringify(data));
-      console.log("Has been release: ", JSON.stringify(hasBeenReleased));
-
       changeGValue(data);
       let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
@@ -113,9 +102,6 @@ function App() {
     }
 
     if (colorComponent === "B") {
-      console.log(colorComponent);
-      console.log("DATA variable is: ", JSON.stringify(data));
-      console.log("Has been release: ", JSON.stringify(hasBeenReleased));
       changeBValue(Number(data));
       let newXPosition = -355 + Math.floor((data / 255) * 670) + 21;
       if (hasBeenReleased) {
@@ -200,10 +186,7 @@ function App() {
   }
 
   function showNotification(message) {
-    // alert();
-    console.log(`hi there`);
-    // setNotificationMessage(message);
-    // setNotificationState("fadeOut");
+    console.log(`Notification to be shown: ${message}`);
   }
 
   // TODO: CURRENT : WORK IN PROGRESS

@@ -35,8 +35,6 @@ export default function RGBSlider(props) {
           grid={[2, 2]}
           scale={1}
           onStart={(e, data) => trackPos(e, data, props.colorComponent, false)}
-          // Commenting out onDrag is good!
-          // onDrag={(e, data) => trackPos(e, data, props.colorComponent, false)}
           onStop={(e, data) => setPos(e, data, props.colorComponent, true)}
         >
           <div className="sliderControl">
