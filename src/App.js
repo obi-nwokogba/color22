@@ -174,8 +174,6 @@ function App() {
     setGValue(newValue);
     setBValue(newValue);
 
-    let rightPosition = 45 + ((Number(newValue) - 145) * 645) / 245;
-
     // setSliderRPosition(rightPosition);
     // setSliderGPosition(rightPosition);
     // setSliderBPosition(rightPosition);
