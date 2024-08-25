@@ -191,7 +191,13 @@ function App() {
 
   return (
     <>
-      <div className="topLogoBrand">color22</div>
+      <div className="topLogoDiv">
+      <img
+          className="color22HeaderLogo"
+          src="/color22_logo_svg.svg"
+          alt="color22"
+        />
+      </div>
       <div className="appContainer">
         <CurrentColorContext.Provider
           value={{ currentColorHex, setCurrentColorHex }}
