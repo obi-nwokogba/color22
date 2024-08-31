@@ -58,10 +58,10 @@ export default function RandomColors() {
 
   return (
     <>
-      <h3 className="swatchHeader">
-        RANDOM COLORS
-        <button className="makeMoreColorsButton">make more colors!</button>
-      </h3>
+      <div className="palette-header-container">
+        <div className="palette-header-text">RANDOM COLORS</div>
+        <div> <button className="button1">create more colors</button></div>
+        </div>
 
       {/* First Row of Random Colors */}
       <div className="shadesContainer">

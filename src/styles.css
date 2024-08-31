@@ -17,16 +17,16 @@ a:hover {
   text-decoration: none;
 }
 
-.color22HeaderLogo{
-  padding:8px 0px 5px 0px;
-  width:160px;
+.color22HeaderLogo {
+  padding: 8px 0px 5px 0px;
+  width: 160px;
 }
 
-.color22FooterLogo{
-  display:block;
-  padding:18px 0px 5px 0px;
+.color22FooterLogo {
+  display: block;
+  padding: 18px 0px 5px 0px;
   width: 180px;
-  opacity:0.2;
+  opacity: 0.2;
 }
 
 .topLogoDiv {
@@ -155,7 +155,7 @@ h3.swatchHeader {
   line-height: 1.2em;
 }
 
-.footercontainer > a {
+.footercontainer>a {
   color: gray;
   font-weight: 600;
 }
@@ -295,23 +295,6 @@ h3.swatchHeader {
   margin-bottom: 15px;
 }
 
-.makeMoreColorsButton {
-  font-family: "Hanken Grotesk", sans-serif;
-  border: solid 1px rgb(91, 91, 91);
-  color: rgb(91, 91, 91);
-  border: none;
-  padding: 5px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  margin-left: 15px;
-  margin-top: -15px !important;
-}
-
-.makeMoreColorsButton:hover {
-  color: white;
-  background-color: #c53f92;
-}
-
 .fadeOut {
   font-size: 1.4em;
   font-weight: 300;
@@ -324,6 +307,7 @@ h3.swatchHeader {
   height: 0;
   transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
 }
+
 .fadeIn {
   font-size: 1.4em;
   font-weight: 300;
@@ -335,4 +319,41 @@ h3.swatchHeader {
   width: 100%;
   height: 100px;
   transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
+}
+
+.palette-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-bottom: 15px;
+}
+
+.palette-header-text {
+  font-family: "Hanken Grotesk", sans-serif;
+  text-align: left;
+  font-weight: 400;
+  letter-spacing: 0.07em;
+  font-size: 1.2em;
+}
+
+.button1 {
+  font-family: "Hanken Grotesk", sans-serif;
+  border: solid 1px rgb(91, 91, 91);
+  color: rgb(91, 91, 91);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  margin-left: 15px;
+  margin-top: -25px !important;
+  font-size: 0.7em;
+  font-weight: 500;
+  line-height: 2.6;
+  max-height: 20px;
+}
+
+.button1:hover {
+  color: white;
+  background-color: #c53f92;
 }
