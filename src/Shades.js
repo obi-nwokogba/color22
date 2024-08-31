@@ -12,7 +12,7 @@ export default function Shades(props, hslToHexFunction) {
   let lightnessIncrement = maxLightness / 4.6;
   let darknessIncrement = maxDarkness / 4.6;
 
-  let stringOfHexColors = [];
+  let arrayOfHexColors = [];
 
   // hsl to hex function from:
   // https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
@@ -34,33 +34,58 @@ export default function Shades(props, hslToHexFunction) {
 
     // Create dark shades, starting from the darkest
     for (let d = 4; d > 0; d--) {
-      stringOfHexColors.push(hslToHex(
-        currentColorHue,
-        currentColorSat,
-        currentColorLig - darknessIncrement * d));
+      let lightnessValue = currentColorLig - darknessIncrement * d;
+      arrayOfHexColors.push({
+        hex:
+          hslToHex(
+            currentColorHue,
+            currentColorSat,
+            lightnessValue),
+        lightness: lightnessValue
+      });
     }
 
     // Push the original current color as middle element of array
-    stringOfHexColors.push(hslToHex(
-      currentColorHue,
-      currentColorSat,
-      currentColorLig));
+    let lightnessValue = currentColorLig;
+    arrayOfHexColors.push({
+      hex:
+        hslToHex(
+          currentColorHue,
+          currentColorSat,
+          lightnessValue),
+      lightness: lightnessValue
+    });
+
 
     // Push set of lighter shades into array.
     for (let l = 1; l < 5; l++) {
-      stringOfHexColors.push(hslToHex(
-        currentColorHue,
-        currentColorSat,
-        currentColorLig + lightnessIncrement * l));
+      let lightnessValue = currentColorLig + lightnessIncrement * l;
+      arrayOfHexColors.push({
+        hex:
+          hslToHex(
+            currentColorHue,
+            currentColorSat,
+            lightnessValue),
+        lightness: lightnessValue
+      });
     }
   }
 
   generateArrayOfShades();
-  console.log(JSON.stringify(stringOfHexColors));
+
+  let arrayOfShadeCells = arrayOfHexColors.map(shadeObject => {
+    return (
+      <ShadeCell
+        func={props.func}
+        hue={currentColorHue}
+        sat={currentColorSat}
+        lig={shadeObject.lightness}
+        hex={shadeObject.hex}
+      />);
+  });
 
   return (
     <>
-
       <div className="palette-header-container">
         <div className="palette-header-text"> SHADES
           <span className="lighter">
@@ -70,14 +95,18 @@ export default function Shades(props, hslToHexFunction) {
         <div>
 
           <button className="button1" onClick={() => {
-            navigator.clipboard.writeText(stringOfHexColors);
+            navigator.clipboard.writeText(arrayOfHexColors);
           }}>copy all
           </button>
         </div>
       </div>
 
       <div className="shadesContainer">
-        <ShadeCell
+
+
+        {arrayOfShadeCells}
+
+        {/* <ShadeCell
           func={props.func}
           hue={currentColorHue}
           sat={currentColorSat}
@@ -172,7 +201,7 @@ export default function Shades(props, hslToHexFunction) {
             currentColorSat,
             currentColorLig + lightnessIncrement * 4
           )}
-        />
+        /> */}
       </div>
     </>
   );
