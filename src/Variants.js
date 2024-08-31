@@ -60,7 +60,10 @@ export default function Shades(props, hslToHexFunction) {
 
   return (
     <>
-      <h3 className="swatchHeader">VARIANTS</h3>
+      <div className="palette-header-container">
+        <div className="palette-header-text">VARIANTS</div>
+        <div></div>
+      </div>
       <div className="shadesContainer">
         <ShadeCell
           hue={hueArray[0]}

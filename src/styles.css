@@ -325,6 +325,7 @@ h3.swatchHeader {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 20px;
   padding-top: 30px;
   padding-bottom: 15px;
 }
@@ -349,11 +350,13 @@ h3.swatchHeader {
   margin-top: -25px !important;
   font-size: 0.7em;
   font-weight: 500;
-  line-height: 2.6;
-  max-height: 20px;
+  max-height: 30px;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .button1:hover {
   color: white;
-  background-color: #c53f92;
+  background-color: #888888;
+  opacity: 1;
 }

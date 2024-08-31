@@ -12,6 +12,8 @@ export default function Shades(props, hslToHexFunction) {
   let lightnessIncrement = maxLightness / 4.6;
   let darknessIncrement = maxDarkness / 4.6;
 
+  let stringOfHexColors = [];
+
   // hsl to hex function from:
   // https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
   function hslToHex(h, s, l) {
@@ -27,15 +29,53 @@ export default function Shades(props, hslToHexFunction) {
     return `#${f(0)}${f(8)}${f(4)}`;
   }
 
+
+  function generateArrayOfShades() {
+
+    // Create dark shades, starting from the darkest
+    for (let d = 4; d > 0; d--) {
+      stringOfHexColors.push(hslToHex(
+        currentColorHue,
+        currentColorSat,
+        currentColorLig - darknessIncrement * d));
+    }
+
+    // Push the original current color as middle element of array
+    stringOfHexColors.push(hslToHex(
+      currentColorHue,
+      currentColorSat,
+      currentColorLig));
+
+    // Push set of lighter shades into array.
+    for (let l = 1; l < 5; l++) {
+      stringOfHexColors.push(hslToHex(
+        currentColorHue,
+        currentColorSat,
+        currentColorLig + lightnessIncrement * l));
+    }
+  }
+
+  generateArrayOfShades();
+  console.log(JSON.stringify(stringOfHexColors));
+
   return (
     <>
-      <h3 className="swatchHeader">
-        SHADES
-        <span className="lighter">
-          &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
-          LIGHTER: +{lightnessIncrement.toFixed(1)}%
-        </span>
-      </h3>
+
+      <div className="palette-header-container">
+        <div className="palette-header-text"> SHADES
+          <span className="lighter">
+            &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
+            LIGHTER: +{lightnessIncrement.toFixed(1)}%
+          </span></div>
+        <div>
+
+          <button className="button1" onClick={() => {
+            navigator.clipboard.writeText(stringOfHexColors);
+          }}>copy all
+          </button>
+        </div>
+      </div>
+
       <div className="shadesContainer">
         <ShadeCell
           func={props.func}
