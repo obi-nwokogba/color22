@@ -1,3 +1,4 @@
+import { Switch } from 'antd';
 import ShadeCell from "./ShadeCell";
 import "./styles.css";
 
@@ -92,6 +93,7 @@ export default function Shades(props, hslToHexFunction) {
             &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
             LIGHTER: +{lightnessIncrement.toFixed(1)}%
           </span></div>
+        <div><Switch checkedChildren="18" unCheckedChildren="9" /></div>
         <div>
 
           <button className="button1" onClick={() => {
