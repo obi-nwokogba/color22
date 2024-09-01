@@ -367,9 +367,23 @@ h3.swatchHeader {
 
 .sticky-left-menu-box {
   position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   left: 0;
-  top: 0;
+  top: 35%;
   width: 300px;
-  border: 2px solid green;
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-left-menu-box>span {
+  display: block;
+  text-transform: uppercase;
+  padding: 20px;
+  border-bottom: solid 1px rgb(208, 208, 208);
+  color: #5d5d5d;
+}
+
+.sticky-left-menu-box>span:hover {
+  background-color: rgba(255, 255, 255, 0.423);
+  cursor: pointer;
 }
