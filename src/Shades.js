@@ -1,8 +1,18 @@
+import { useState, useEffect } from 'react';
 import { Switch } from 'antd';
 import ShadeCell from "./ShadeCell";
 import "./styles.css";
 
 export default function Shades(props, hslToHexFunction) {
+
+  const [numberOfShades, setNumberOfShades] = useState(8);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  }, [numberOfShades])
+
   let currentColorHue = props.currentColorHSLArray[0];
   let currentColorSat = props.currentColorHSLArray[1];
   let currentColorLig = Number(props.currentColorHSLArray[2]);
@@ -33,8 +43,10 @@ export default function Shades(props, hslToHexFunction) {
 
   function generateArrayOfShades() {
 
+    let numberOfDarkShadesToMake = Math.floor(numberOfShades / 2);
+
     // Create dark shades, starting from the darkest
-    for (let d = 4; d > 0; d--) {
+    for (let d = numberOfDarkShadesToMake; d > 0; d--) {
       let lightnessValue = currentColorLig - darknessIncrement * d;
       arrayOfHexColors.push({
         hex:
@@ -59,7 +71,7 @@ export default function Shades(props, hslToHexFunction) {
 
 
     // Push set of lighter shades into array.
-    for (let l = 1; l < 5; l++) {
+    for (let l = 1; l < numberOfDarkShadesToMake; l++) {
       let lightnessValue = currentColorLig + lightnessIncrement * l;
       arrayOfHexColors.push({
         hex:
@@ -93,7 +105,11 @@ export default function Shades(props, hslToHexFunction) {
             &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
             LIGHTER: +{lightnessIncrement.toFixed(1)}%
           </span></div>
-        <div><Switch checkedChildren="18" unCheckedChildren="9" /></div>
+        <div><Switch checkedChildren="18" unCheckedChildren="9"
+          onChange={event => {
+            event ? setNumberOfShades(18) : setNumberOfShades(9);
+            console.log(numberOfShades);
+          }} /> {numberOfShades}</div>
         <div>
 
           <button className="button1" onClick={() => {
