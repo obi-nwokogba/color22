@@ -6,6 +6,7 @@ import "./styles.css";
 export default function Shades(props, hslToHexFunction) {
 
   const [numberOfShades, setNumberOfShades] = useState(8);
+  const [stringOfShadesForClipboard, setStringOfShadesForClipboard] = useState('');
 
   let currentColorHue = props.currentColorHSLArray[0];
   let currentColorSat = props.currentColorHSLArray[1];
@@ -17,13 +18,15 @@ export default function Shades(props, hslToHexFunction) {
   const [lightnessIncrement, setLightnessIncrement] = useState(maxLightness / (numberOfShades / 2));
   const [darknessIncrement, setDarknessIncrement] = useState(maxDarkness / (numberOfShades / 2));
 
-  // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     generateArrayOfShades();
-    // setLightnessIncrement((maxLightness / Math.floor(numberOfShades / 2)));
     setLightnessIncrement(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
     setDarknessIncrement(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
-  }, [numberOfShades, generateArrayOfShades, setLightnessIncrement, setDarknessIncrement, maxDarkness, maxLightness]);
+    setStringOfShadesForClipboard(JSON.stringify(arrayOfHexColors.map(colorObj => colorObj.hex)));
+  }, [numberOfShades, generateArrayOfShades,
+    setLightnessIncrement, setDarknessIncrement,
+    maxDarkness, maxLightness,
+    setStringOfShadesForClipboard]);
 
   let arrayOfHexColors = [];
 
@@ -99,27 +102,6 @@ export default function Shades(props, hslToHexFunction) {
       totalNumberOfCellsAdded++;
       l++;
     }
-
-    /*
-    while (totalNumberOfCellsAdded < numberOfShades) {
-      let lightnessValue = currentColorLig + lightnessIncrement * l;
-
-      if (lightnessValue <= 100.0001) {
-        arrayOfHexColors.push({
-          hex:
-            hslToHex(
-              currentColorHue,
-              currentColorSat,
-              lightnessValue),
-          lightness: lightnessValue
-        });
-
-        totalNumberOfCellsAdded++;
-        l++;
-      }
-    } */
-
-
   }
 
   generateArrayOfShades();
@@ -148,7 +130,7 @@ export default function Shades(props, hslToHexFunction) {
         <div>
 
           <button className="button1" onClick={() => {
-            navigator.clipboard.writeText(JSON.stringify(arrayOfHexColors.filter(colorObj => colorObj.hex)));
+            navigator.clipboard.writeText(stringOfShadesForClipboard);
           }}>copy all
           </button> &nbsp;
           <Switch checkedChildren="18" unCheckedChildren="9"

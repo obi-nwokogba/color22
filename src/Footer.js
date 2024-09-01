@@ -3,7 +3,7 @@ import "./styles.css";
 export default function Footer() {
   return (
     <span className="footercontainer">
-      Last Updated:August 31, 2024
+      Last Updated on September 1, 2024
       <br />
       color22 on GitHUb{" "}
       <a href="https://github.com/obi-nwokogba/color22">
@@ -14,10 +14,10 @@ export default function Footer() {
       &copy; 2024 <a href="https://www.obilo.io">Obi Nwokogba</a>
 
       <img
-          className="color22FooterLogo"
-          src="/color22_logo_svg.svg"
-          alt="color22"
-        />
+        className="color22FooterLogo"
+        src="/color22_logo_svg.svg"
+        alt="color22"
+      />
     </span>
   );
 }

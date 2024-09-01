@@ -8,8 +8,10 @@ You can use color22 easily in your browser at this URL: [https://color22.com](ht
 
 ## Features of color22
 
-- Generate Shades of a color
-- Generate Variants/Look-alikes of a color
+- Generate Shades of a color.
+- Generate either 9 or 18 shades of a color.
+- Generate Variants/Look-alikes of a color.
+- 'Copy All' button to easily copy the Hex codes of all the shades as an array of strings. e.g.: ["#010c1b","#031a38","#052855","#063572","#08438f","#0950ac","#0b5ec9","#0c6be6","#1e7bf3","#3b8cf5","#589df6","#75aef8","#92bff9","#afd0fb","#cce1fc","#e9f2fe","#010c1b","#031a38","#052855","#063572","#08438f","#0950ac","#0b5ec9","#0c6be6","#1e7bf3","#3b8cf5","#589df6","#75aef8","#92bff9","#afd0fb","#cce1fc","#e9f2fe"]
 
 ## Next Steps, Planned Features, and Notes
 
