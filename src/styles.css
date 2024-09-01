@@ -215,9 +215,12 @@ h3.swatchHeader {
 .shadesContainer {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
+  align-items: flex-start;
+  /*
+  justify-content: space-between;*/
   flex-wrap: wrap;
+  align-content: start;
+  text-align: left;
 }
 
 .shadeCellContainer {

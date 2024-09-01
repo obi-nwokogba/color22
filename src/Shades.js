@@ -7,11 +7,6 @@ export default function Shades(props, hslToHexFunction) {
 
   const [numberOfShades, setNumberOfShades] = useState(8);
 
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    generateArrayOfShades();
-  }, [numberOfShades, generateArrayOfShades]);
-
   let currentColorHue = props.currentColorHSLArray[0];
   let currentColorSat = props.currentColorHSLArray[1];
   let currentColorLig = Number(props.currentColorHSLArray[2]);
@@ -19,8 +14,14 @@ export default function Shades(props, hslToHexFunction) {
   let maxLightness = 100 - currentColorLig;
   let maxDarkness = currentColorLig;
 
-  let lightnessIncrement = maxLightness / 4.6;
-  let darknessIncrement = maxDarkness / 4.6;
+  const [lightnessIncrement, setLightnessIncrement] = useState(maxLightness / (numberOfShades / 2));
+  const [darknessIncrement, setDarknessIncrement] = useState(maxDarkness / (numberOfShades / 2));
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    generateArrayOfShades();
+    setLightnessIncrement(maxLightness / (numberOfShades / 2));
+  }, [numberOfShades, generateArrayOfShades, setLightnessIncrement, setDarknessIncrement, maxDarkness, maxLightness]);
 
   let arrayOfHexColors = [];
 
@@ -47,14 +48,18 @@ export default function Shades(props, hslToHexFunction) {
     // Create dark shades, starting from the darkest
     for (let d = numberOfDarkShadesToMake; d > 0; d--) {
       let lightnessValue = currentColorLig - darknessIncrement * d;
-      arrayOfHexColors.push({
-        hex:
-          hslToHex(
-            currentColorHue,
-            currentColorSat,
-            lightnessValue),
-        lightness: lightnessValue
-      });
+
+      if (lightnessValue >= 0) {
+        arrayOfHexColors.push({
+          hex:
+            hslToHex(
+              currentColorHue,
+              currentColorSat,
+              lightnessValue),
+          lightness: lightnessValue
+        });
+      }
+
     }
 
     // Push the original current color as middle element of array
@@ -72,14 +77,18 @@ export default function Shades(props, hslToHexFunction) {
     // Push set of lighter shades into array.
     for (let l = 1; l < numberOfDarkShadesToMake; l++) {
       let lightnessValue = currentColorLig + lightnessIncrement * l;
-      arrayOfHexColors.push({
-        hex:
-          hslToHex(
-            currentColorHue,
-            currentColorSat,
-            lightnessValue),
-        lightness: lightnessValue
-      });
+      // console.log(`lightnessValue2 : ${lightnessValue2}`);
+
+      if (lightnessValue <= 255) {
+        arrayOfHexColors.push({
+          hex:
+            hslToHex(
+              currentColorHue,
+              currentColorSat,
+              lightnessValue),
+          lightness: lightnessValue
+        });
+      }
     }
   }
 
