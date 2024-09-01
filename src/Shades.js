@@ -9,9 +9,8 @@ export default function Shades(props, hslToHexFunction) {
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
-  }, [numberOfShades])
+    generateArrayOfShades();
+  }, [numberOfShades, generateArrayOfShades]);
 
   let currentColorHue = props.currentColorHSLArray[0];
   let currentColorSat = props.currentColorHSLArray[1];
@@ -120,106 +119,7 @@ export default function Shades(props, hslToHexFunction) {
       </div>
 
       <div className="shadesContainer">
-
-
         {arrayOfShadeCells}
-
-        {/* <ShadeCell
-          func={props.func}
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig - darknessIncrement * 4}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig - darknessIncrement * 4
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig - darknessIncrement * 3}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig - darknessIncrement * 3
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig - darknessIncrement * 2}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig - darknessIncrement * 2
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig - darknessIncrement}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig - darknessIncrement
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig}
-          hex={hslToHex(currentColorHue, currentColorSat, currentColorLig)}
-          thisIsCurrentColor={true}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig + lightnessIncrement}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig + lightnessIncrement
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig + lightnessIncrement * 2}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig + lightnessIncrement * 2
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig + lightnessIncrement * 3}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig + lightnessIncrement * 3
-          )}
-        />
-
-        <ShadeCell
-          hue={currentColorHue}
-          sat={currentColorSat}
-          lig={currentColorLig + lightnessIncrement * 4}
-          hex={hslToHex(
-            currentColorHue,
-            currentColorSat,
-            currentColorLig + lightnessIncrement * 4
-          )}
-        /> */}
       </div>
     </>
   );
