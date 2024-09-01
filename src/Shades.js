@@ -20,7 +20,9 @@ export default function Shades(props, hslToHexFunction) {
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     generateArrayOfShades();
-    setLightnessIncrement(maxLightness / (numberOfShades / 2));
+    // setLightnessIncrement((maxLightness / Math.floor(numberOfShades / 2)));
+    setLightnessIncrement(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
+    setDarknessIncrement(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
   }, [numberOfShades, generateArrayOfShades, setLightnessIncrement, setDarknessIncrement, maxDarkness, maxLightness]);
 
   let arrayOfHexColors = [];
@@ -43,6 +45,7 @@ export default function Shades(props, hslToHexFunction) {
 
   function generateArrayOfShades() {
 
+    let totalNumberOfCellsAdded = 0;
     let numberOfDarkShadesToMake = Math.floor(numberOfShades / 2);
 
     // Create dark shades, starting from the darkest
@@ -58,6 +61,7 @@ export default function Shades(props, hslToHexFunction) {
               lightnessValue),
           lightness: lightnessValue
         });
+        totalNumberOfCellsAdded++;
       }
 
     }
@@ -72,14 +76,16 @@ export default function Shades(props, hslToHexFunction) {
           lightnessValue),
       lightness: lightnessValue
     });
+    totalNumberOfCellsAdded++;
 
 
     // Push set of lighter shades into array.
-    for (let l = 1; l < numberOfDarkShadesToMake; l++) {
+    let l = 1;
+    while (totalNumberOfCellsAdded < numberOfShades) {
       let lightnessValue = currentColorLig + lightnessIncrement * l;
-      // console.log(`lightnessValue2 : ${lightnessValue2}`);
 
-      if (lightnessValue <= 255) {
+
+      if (lightnessValue <= 100.0001) {
         arrayOfHexColors.push({
           hex:
             hslToHex(
@@ -89,7 +95,31 @@ export default function Shades(props, hslToHexFunction) {
           lightness: lightnessValue
         });
       }
+
+      totalNumberOfCellsAdded++;
+      l++;
     }
+
+    /*
+    while (totalNumberOfCellsAdded < numberOfShades) {
+      let lightnessValue = currentColorLig + lightnessIncrement * l;
+
+      if (lightnessValue <= 100.0001) {
+        arrayOfHexColors.push({
+          hex:
+            hslToHex(
+              currentColorHue,
+              currentColorSat,
+              lightnessValue),
+          lightness: lightnessValue
+        });
+
+        totalNumberOfCellsAdded++;
+        l++;
+      }
+    } */
+
+
   }
 
   generateArrayOfShades();
@@ -97,6 +127,7 @@ export default function Shades(props, hslToHexFunction) {
   let arrayOfShadeCells = arrayOfHexColors.map(shadeObject => {
     return (
       <ShadeCell
+        thisIsCurrentColor={shadeObject.hex === props.currentColorHex}
         func={props.func}
         hue={currentColorHue}
         sat={currentColorSat}
@@ -113,17 +144,17 @@ export default function Shades(props, hslToHexFunction) {
             &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
             LIGHTER: +{lightnessIncrement.toFixed(1)}%
           </span></div>
-        <div><Switch checkedChildren="18" unCheckedChildren="9"
-          onChange={event => {
-            event ? setNumberOfShades(18) : setNumberOfShades(9);
-            console.log(numberOfShades);
-          }} /> {numberOfShades}</div>
+        <div></div>
         <div>
 
           <button className="button1" onClick={() => {
-            navigator.clipboard.writeText(arrayOfHexColors);
+            navigator.clipboard.writeText(JSON.stringify(arrayOfHexColors.filter(colorObj => colorObj.hex)));
           }}>copy all
-          </button>
+          </button> &nbsp;
+          <Switch checkedChildren="18" unCheckedChildren="9"
+            onChange={event => {
+              event ? setNumberOfShades(18) : setNumberOfShades(9);
+            }} />
         </div>
       </div>
 

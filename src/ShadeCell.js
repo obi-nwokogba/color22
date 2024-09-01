@@ -28,15 +28,19 @@ export default function ShadeCell(props) {
         <div
           className="currentColorMarker"
           style={{
-            backgroundColor: `${
-              props.thisIsCurrentColor ? `#FFFFFF50` : `transparent`
-            }`,
+            backgroundColor: `${props.thisIsCurrentColor ? `#FFFFFF50` : `transparent`
+              }`,
           }}
         >
           {" "}
         </div>
       </div>
-      <span className="shadeCellLabel">{props.hex}</span>
+      <span className="shadeCellLabel">
+        {
+          //(props.lig).toFixed(2)
+          props.hex
+        }
+      </span>
       <span
         className="shadeCellCopyButton"
         onClick={() => {
