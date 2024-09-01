@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Switch } from 'antd';
-import ShadeCell from "./ShadeCell";
-import "./styles.css";
+import ShadeCell from "../ShadeCell";
+import "../styles.css";
 
-export default function Shades(props, hslToHexFunction) {
+export default function History(props, hslToHexFunction) {
 
   let arrayOfHexColors = [];
+  // const [arrayOfShadeCells, setArrayOfShadeCells] = useState([8]);
   const [numberOfShades, setNumberOfShades] = useState(8);
   const [stringOfShadesForClipboard, setStringOfShadesForClipboard] = useState('');
 
@@ -13,22 +14,24 @@ export default function Shades(props, hslToHexFunction) {
   let currentColorSat = props.currentColorHSLArray[1];
   let currentColorLig = Number(props.currentColorHSLArray[2]);
 
-  let maxLightness = 100 - currentColorLig;
-  let maxDarkness = currentColorLig;
+  useEffect(() => {
+    generateArrayOfShades();
+  }, [props.currentColorHex, generateArrayOfShades]);
 
-  const [lightnessIncrement, setLightnessIncrement] = useState(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
-  const [darknessIncrement, setDarknessIncrement] = useState(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
+  // et maxLightness = 100 - currentColorLig;
+  //let maxDarkness = currentColorLig;
+
+  // const [lightnessIncrement, setLightnessIncrement] = useState(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
+  // const [darknessIncrement, setDarknessIncrement] = useState(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
 
   useEffect(() => {
     generateArrayOfShades();
 
-    setLightnessIncrement(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
-    setDarknessIncrement(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
+    // setLightnessIncrement(Math.ceil((100 - props.currentColorHSLArray[2]) / (numberOfShades / 2)));
+    // setDarknessIncrement(Math.ceil((props.currentColorHSLArray[2]) / (numberOfShades / 2)));
 
     setStringOfShadesForClipboard(JSON.stringify(arrayOfHexColors.map(colorObj => colorObj.hex)));
   }, [numberOfShades, generateArrayOfShades,
-    setLightnessIncrement, setDarknessIncrement,
-    maxDarkness, maxLightness,
     setStringOfShadesForClipboard]);
 
   // hsl to hex function from:
@@ -53,7 +56,7 @@ export default function Shades(props, hslToHexFunction) {
     let numberOfDarkShadesToMake = Math.floor(numberOfShades / 2);
 
     // Create dark shades, starting from the darkest
-    for (let d = numberOfDarkShadesToMake; d > 0; d--) {
+    /* for (let d = numberOfDarkShadesToMake; d > 0; d--) {
       let lightnessValue = currentColorLig - darknessIncrement * d;
 
       if (lightnessValue >= 0) {
@@ -100,20 +103,22 @@ export default function Shades(props, hslToHexFunction) {
 
       totalNumberOfCellsAdded++;
       l++;
-    }
+    }*/
+
+
 
   }
 
   generateArrayOfShades();
 
-  let arrayOfShadeCells = arrayOfHexColors.map(shadeObject => {
+  let arrayOfShadeCells = props.historyHexArray.map(shadeObject => {
     return (
       <ShadeCell
         thisIsCurrentColor={shadeObject.hex === props.currentColorHex}
         func={props.func}
-        hue={currentColorHue}
-        sat={currentColorSat}
-        lig={shadeObject.lightness}
+        hue={shadeObject.hue}
+        sat={shadeObject.sat}
+        lig={shadeObject.lig}
         hex={shadeObject.hex}
       />);
   });
@@ -121,11 +126,8 @@ export default function Shades(props, hslToHexFunction) {
   return (
     <>
       <div className="palette-header-container">
-        <div className="palette-header-text"> SHADES
-          <span className="lighter">
-            &nbsp;&middot; DARKER: -{darknessIncrement.toFixed(1)}% &nbsp;&middot;
-            LIGHTER: +{lightnessIncrement.toFixed(1)}%
-          </span></div>
+        <div className="palette-header-text"> HISTORY {props.historyHexArray.length}
+        </div>
         <div></div>
         <div>
 

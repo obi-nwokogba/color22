@@ -1,7 +1,6 @@
-import { useState, createContext, useContext } from "react";
+import { useContext } from "react";
 import { CurrentColorContext } from "./App.js";
 import "./styles.css";
-import Shades from "./Shades";
 
 // CurrentColorContext = createContext(null)
 
@@ -28,7 +27,7 @@ export default function ShadeCell(props) {
         <div
           className="currentColorMarker"
           style={{
-            backgroundColor: `${props.thisIsCurrentColor ? `#FFFFFF50` : `transparent`
+            backgroundColor: `${props.thisIsCurrentColor ? `#FFFFFF` : `transparent`
               }`,
           }}
         >

@@ -8,17 +8,14 @@ import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
+import { LeftAnchoredMenu, History } from "../src/components";
+import { color } from "framer-motion";
 
 export const CurrentColorContext = createContext(null);
 
 function App() {
   const [currentColorHex, setCurrentColorHex] = useState("#1E7BF3");
-  let colorHistory = [currentColorHex];
-  let previousColor = useRef(currentColorHex);
-
-  useEffect(() => {
-    colorHistory.push(previousColor.current);
-  });
+  const [colorHistory, setColorHistory] = useState([]);
 
   // Everytime the a new color is picked/clicked and currentColorHex is changed
   useEffect(() => {
@@ -41,7 +38,10 @@ function App() {
 
     setHSLValue(RGBToHSL(newRValue, newGValue, newBValue));
 
-    colorHistory.push("latest");
+    // colorHistory.push("latest");
+    let currentColorHSLArray = RGBToHSL(newRValue, newGValue, newBValue);
+    let currentColorObj = { hue: currentColorHSLArray[0], sat: currentColorHSLArray[1], lig: currentColorHSLArray[2], hex: currentColorHex };
+    setColorHistory([currentColorObj, ...colorHistory]);
     // Scroll to top of page
     window.scrollTo({
       top: 0,
@@ -138,10 +138,10 @@ function App() {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
       : null;
   }
 
@@ -157,8 +157,8 @@ function App() {
       ? l === r
         ? (g - b) / s
         : l === g
-        ? 2 + (b - r) / s
-        : 4 + (r - g) / s
+          ? 2 + (b - r) / s
+          : 4 + (r - g) / s
       : 0;
     return [
       (60 * h < 0 ? 60 * h + 360 : 60 * h).toFixed(2),
@@ -191,8 +191,9 @@ function App() {
 
   return (
     <>
+      <LeftAnchoredMenu />
       <div className="topLogoDiv">
-      <img
+        <img
           className="color22HeaderLogo"
           src="/color22_logo_svg.svg"
           alt="color22"
@@ -204,7 +205,7 @@ function App() {
         >
           <span className="colorHistoryText">
             HISTORY
-            <span className="lighter2 smaller">{colorHistory}</span>
+            <span className="lighter2 smaller">{colorHistory.length}</span>
           </span>
 
           <div className="displayColorContainer">
@@ -263,6 +264,12 @@ function App() {
             />
 
             <Variants
+              currentColorHSLArray={HSLValueArray}
+              currentColorHex={currentColorHex}
+            />
+            <History
+              func={setNewColor}
+              historyHexArray={colorHistory}
               currentColorHSLArray={HSLValueArray}
               currentColorHex={currentColorHex}
             />

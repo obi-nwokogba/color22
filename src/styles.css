@@ -364,3 +364,12 @@ h3.swatchHeader {
   background-color: #888888;
   opacity: 1;
 }
+
+.sticky-left-menu-box {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 300px;
+  border: 2px solid green;
+}
