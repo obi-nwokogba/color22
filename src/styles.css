@@ -52,23 +52,30 @@ a:hover {
 }
 
 .search-input-box {
-  padding: 10px;
-  font-size: 0.6em;
+  padding: 13px;
+  font-size: 0.5em;
   max-width: 180px;
   border-radius: 20px;
   max-height: 50px;
   opacity: 0.4;
+  border: solid 3px gray;
 }
 
 .search-icon-button {
   width: 60px;
   height: 60px;
   margin-left: 5px;
+  fill: red;
+  color: red;
+  stroke: red;
+  opacity: 0.2;
 }
 
 .search-icon-button:hover {
+  opacity: 0.4;
   cursor: pointer;
   fill: #1e7bf3;
+  zoom: 1.03;
 }
 
 .app-frame {

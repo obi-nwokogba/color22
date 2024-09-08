@@ -144,7 +144,7 @@ function App() {
     console.log(`Notification to be shown: ${message}`);
   }
 
-  // TODO: CURRENT : WORK IN PROGRESS
+  function validateSearchedColor() {}
 
   return (
     <>
@@ -157,8 +157,13 @@ function App() {
             src="/color22_logo_picker.svg"
             alt="color22"
           />
+
           <div className="search-container">
-            <input value={currentColorHex} className="search-input-box" />
+            <input
+              defaultValue={currentColorHex}
+              onChange={validateSearchedColor}
+              className="search-input-box"
+            />
             <img
               src="../search-icon.svg"
               alt="Search"
