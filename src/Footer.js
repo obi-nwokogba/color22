@@ -12,12 +12,15 @@ export default function Footer() {
       <br />
       <br />
       &copy; 2024 <a href="https://www.obilo.io">Obi Nwokogba</a>
-
       <img
         className="color22FooterLogo"
         src="/color22_logo_svg.svg"
         alt="color22"
       />
+      <span className="text8">window.innerWidth:</span>
+      <span className="text1">{window.innerWidth}px</span>
+      <span className="text8">window.innerHeight:</span>
+      <span className="text1">{window.innerHeight}px</span>
     </span>
   );
 }

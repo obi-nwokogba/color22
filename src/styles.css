@@ -155,7 +155,6 @@ h3.swatchHeader {
   margin-top: 30px;
   font-size: 0.8em;
   text-align: left;
-  text-transform: uppercase;
   opacity: 0.6;
   line-height: 1.2em;
   display: block;
@@ -394,6 +393,22 @@ h3.swatchHeader {
   cursor: pointer;
 }
 
+.text1 {
+  font-size: 4em;
+  font-weight: 200;
+  display: block;
+  opacity: 0.3;
+  line-height: 45px;
+}
+
+.text8 {
+  font-size: 0.8em;
+  font-weight: 300;
+  display: block;
+  opacity: 0.6;
+  line-height: 45px;
+}
+
 /* FIRST BREAKPOINT */
 @media all and (max-width: 420px) {
 }
@@ -408,6 +423,9 @@ h3.swatchHeader {
 
 /* FOURTH BREAKPOINT */
 @media all and (max-width: 1270px) {
+  .sticky-left-menu-box {
+    width: 200px;
+  }
 }
 
 /* FIFTH BREAKPOINT */
