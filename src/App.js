@@ -8,8 +8,8 @@ import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
+import { RGBToHSL, rgbToHex } from "./Utilities";
 import { LeftAnchoredMenu, History } from "../src/components";
-import { color } from "framer-motion";
 
 export const CurrentColorContext = createContext(null);
 
@@ -126,54 +126,6 @@ function App() {
     changeHSLValue([(RValue, GValue, BValue)]);
   };
 
-  // FUNCTIONS=================================
-
-  function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length === 1 ? "0" + hex : hex;
-  }
-
-  function rgbToHex(r, g, b) {
-    let hexColor =
-      "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-    return hexColor.toUpperCase();
-  }
-
-  function hexToRgb(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
-        }
-      : null;
-  }
-
-  // RGB to HSL function is from
-  // https://www.30secondsofcode.org/js/s/rgb-to-hsl/
-  function RGBToHSL(r, g, b) {
-    r /= 255;
-    g /= 255;
-    b /= 255;
-    const l = Math.max(r, g, b);
-    const s = l - Math.min(r, g, b);
-    const h = s
-      ? l === r
-        ? (g - b) / s
-        : l === g
-        ? 2 + (b - r) / s
-        : 4 + (r - g) / s
-      : 0;
-    return [
-      (60 * h < 0 ? 60 * h + 360 : 60 * h).toFixed(2),
-      (
-        100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0)
-      ).toFixed(2),
-      ((100 * (2 * l - s)) / 2).toFixed(2),
-    ];
-  }
-
   function grayWasPicked(newValue) {
     setRValue(newValue);
     setGValue(newValue);
@@ -201,7 +153,7 @@ function App() {
         <div className="topLogoDiv">
           <img
             className="color22HeaderLogo"
-            src="/color22_logo_svg.svg"
+            src="/color22_logo_picker.svg"
             alt="color22"
           />
         </div>
