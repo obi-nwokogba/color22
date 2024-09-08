@@ -20,24 +20,55 @@ a:hover {
 .color22HeaderLogo {
   padding: 8px 0px 5px 0px;
   width: 160px;
+  opacity: 0.4;
 }
 
-.color22FooterLogo {
+.color22-footer-logo {
   display: block;
   padding: 18px 0px 5px 0px;
   width: 180px;
   opacity: 0.2;
 }
 
-.topLogoDiv {
+.logo-search-header {
   color: gray;
-  display: block;
+  display: flex;
+  flex-direction: row;
   text-align: center;
   font-weight: 300;
   font-size: 3em;
-  opacity: 0.17;
   letter-spacing: -2px;
   padding: 8px 0px 0px 0px;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-container {
+  background-color: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-input-box {
+  padding: 10px;
+  font-size: 0.6em;
+  max-width: 180px;
+  border-radius: 20px;
+  max-height: 50px;
+  opacity: 0.4;
+}
+
+.search-icon-button {
+  width: 60px;
+  height: 60px;
+  margin-left: 5px;
+}
+
+.search-icon-button:hover {
+  cursor: pointer;
+  fill: #1e7bf3;
 }
 
 .app-frame {

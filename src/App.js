@@ -8,7 +8,7 @@ import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
-import { RGBToHSL, rgbToHex } from "./Utilities";
+import { RGBToHSL, rgbToHex, hexToRgb } from "./Utilities";
 import { LeftAnchoredMenu, History } from "../src/components";
 
 export const CurrentColorContext = createContext(null);
@@ -150,12 +150,21 @@ function App() {
     <>
       <div className="app-frame">
         <LeftAnchoredMenu />
-        <div className="topLogoDiv">
+
+        <div className="logo-search-header">
           <img
             className="color22HeaderLogo"
             src="/color22_logo_picker.svg"
             alt="color22"
           />
+          <div className="search-container">
+            <input value={currentColorHex} className="search-input-box" />
+            <img
+              src="../search-icon.svg"
+              alt="Search"
+              className="search-icon-button"
+            />
+          </div>
         </div>
         <div className="appContainer">
           <CurrentColorContext.Provider
