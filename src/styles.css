@@ -155,7 +155,7 @@ h3.swatchHeader {
   line-height: 1.2em;
 }
 
-.footercontainer>a {
+.footercontainer > a {
   color: gray;
   font-weight: 600;
 }
@@ -375,7 +375,7 @@ h3.swatchHeader {
   flex-direction: column;
 }
 
-.sticky-left-menu-box>span {
+.sticky-left-menu-box > span {
   display: block;
   text-transform: uppercase;
   padding: 20px;
@@ -383,7 +383,35 @@ h3.swatchHeader {
   color: #5d5d5d;
 }
 
-.sticky-left-menu-box>span:hover {
+.sticky-left-menu-box > span:hover {
   background-color: rgba(255, 255, 255, 0.423);
   cursor: pointer;
+}
+
+/* FIRST BREAKPOINT */
+@media all and (max-width: 420px) {
+}
+
+/* SECOND BREAKPOINT */
+@media all and (max-width: 650px) {
+}
+
+/* THIRD BREAKPOINT */
+@media all and (max-width: 900px) {
+}
+
+/* FOURTH BREAKPOINT */
+@media all and (max-width: 1270px) {
+}
+
+/* FIFTH BREAKPOINT */
+@media all and (max-width: 1600px) {
+}
+
+/* SIXTH BREAKPOINT */
+@media all and (max-width: 2000px) {
+}
+
+/* SEVENTH BREAKPOINT */
+@media all and (min-width: 2000px) {
 }
