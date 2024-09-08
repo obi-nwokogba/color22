@@ -40,7 +40,12 @@ function App() {
 
     // colorHistory.push("latest");
     let currentColorHSLArray = RGBToHSL(newRValue, newGValue, newBValue);
-    let currentColorObj = { hue: currentColorHSLArray[0], sat: currentColorHSLArray[1], lig: currentColorHSLArray[2], hex: currentColorHex };
+    let currentColorObj = {
+      hue: currentColorHSLArray[0],
+      sat: currentColorHSLArray[1],
+      lig: currentColorHSLArray[2],
+      hex: currentColorHex,
+    };
     setColorHistory([currentColorObj, ...colorHistory]);
     // Scroll to top of page
     window.scrollTo({
@@ -138,10 +143,10 @@ function App() {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
-      }
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
       : null;
   }
 
@@ -157,8 +162,8 @@ function App() {
       ? l === r
         ? (g - b) / s
         : l === g
-          ? 2 + (b - r) / s
-          : 4 + (r - g) / s
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
       : 0;
     return [
       (60 * h < 0 ? 60 * h + 360 : 60 * h).toFixed(2),
@@ -191,94 +196,96 @@ function App() {
 
   return (
     <>
-      <LeftAnchoredMenu />
-      <div className="topLogoDiv">
-        <img
-          className="color22HeaderLogo"
-          src="/color22_logo_svg.svg"
-          alt="color22"
-        />
-      </div>
-      <div className="appContainer">
-        <CurrentColorContext.Provider
-          value={{ currentColorHex, setCurrentColorHex }}
-        >
-          <span className="colorHistoryText">
-            HISTORY
-            <span className="lighter2 smaller">{colorHistory.length}</span>
-          </span>
+      <div className="app-frame">
+        <LeftAnchoredMenu />
+        <div className="topLogoDiv">
+          <img
+            className="color22HeaderLogo"
+            src="/color22_logo_svg.svg"
+            alt="color22"
+          />
+        </div>
+        <div className="appContainer">
+          <CurrentColorContext.Provider
+            value={{ currentColorHex, setCurrentColorHex }}
+          >
+            <span className="colorHistoryText">
+              HISTORY
+              <span className="lighter2 smaller">{colorHistory.length}</span>
+            </span>
 
-          <div className="displayColorContainer">
-            <ColorSampleCircle
-              currentColorHex={currentColorHex}
-              onClick={() => {
-                showNotification("Copied to Cluppy");
-              }}
-            />
-
-            <div className="colorDetailsColumn">
-              <BigTextDisplay currentColorHex={currentColorHex} />
-              <BigTextDisplay
-                currentColorHex={`rgb(${RValue}, ${GValue}, ${BValue})`}
+            <div className="displayColorContainer">
+              <ColorSampleCircle
+                currentColorHex={currentColorHex}
+                onClick={() => {
+                  showNotification("Copied to Cluppy");
+                }}
               />
-              <BigTextDisplay
-                currentColorHex={`hsl(${HSLValueArray[0]}, ${HSLValueArray[1]}%, ${HSLValueArray[2]}%)`}
+
+              <div className="colorDetailsColumn">
+                <BigTextDisplay currentColorHex={currentColorHex} />
+                <BigTextDisplay
+                  currentColorHex={`rgb(${RValue}, ${GValue}, ${BValue})`}
+                />
+                <BigTextDisplay
+                  currentColorHex={`hsl(${HSLValueArray[0]}, ${HSLValueArray[1]}%, ${HSLValueArray[2]}%)`}
+                />
+              </div>
+            </div>
+
+            <div className="RGBSliderContainer">
+              <RGBSlider
+                func={("R", pull_data)}
+                colorComponent={"R"}
+                sliderXPosition={Number(sliderRPosition)}
+              />
+              <RGBSlider
+                func={("G", pull_data)}
+                colorComponent={"G"}
+                sliderXPosition={sliderGPosition}
+              />
+              <RGBSlider
+                func={("B", pull_data)}
+                colorComponent={"B"}
+                sliderXPosition={sliderBPosition}
+              />
+
+              <h3>
+                GRAY{" "}
+                <span className="lighter">
+                  BRIGHTNESS: {((grayValue / 255) * 100).toFixed(2)}%
+                </span>
+              </h3>
+
+              <RGBSlider
+                func={("GRAY", pull_data)}
+                colorComponent={"GRAY"}
+                sliderXPosition={sliderGrayPosition}
+              />
+
+              <Shades
+                func={setNewColor}
+                currentColorHSLArray={HSLValueArray}
+                currentColorHex={currentColorHex}
+              />
+
+              <Variants
+                currentColorHSLArray={HSLValueArray}
+                currentColorHex={currentColorHex}
+              />
+              <History
+                func={setNewColor}
+                historyHexArray={colorHistory}
+                currentColorHSLArray={HSLValueArray}
+                currentColorHex={currentColorHex}
               />
             </div>
-          </div>
 
-          <div className="RGBSliderContainer">
-            <RGBSlider
-              func={("R", pull_data)}
-              colorComponent={"R"}
-              sliderXPosition={Number(sliderRPosition)}
-            />
-            <RGBSlider
-              func={("G", pull_data)}
-              colorComponent={"G"}
-              sliderXPosition={sliderGPosition}
-            />
-            <RGBSlider
-              func={("B", pull_data)}
-              colorComponent={"B"}
-              sliderXPosition={sliderBPosition}
-            />
-
-            <h3>
-              GRAY{" "}
-              <span className="lighter">
-                BRIGHTNESS: {((grayValue / 255) * 100).toFixed(2)}%
-              </span>
-            </h3>
-
-            <RGBSlider
-              func={("GRAY", pull_data)}
-              colorComponent={"GRAY"}
-              sliderXPosition={sliderGrayPosition}
-            />
-
-            <Shades
-              func={setNewColor}
-              currentColorHSLArray={HSLValueArray}
-              currentColorHex={currentColorHex}
-            />
-
-            <Variants
-              currentColorHSLArray={HSLValueArray}
-              currentColorHex={currentColorHex}
-            />
-            <History
-              func={setNewColor}
-              historyHexArray={colorHistory}
-              currentColorHSLArray={HSLValueArray}
-              currentColorHex={currentColorHex}
-            />
-          </div>
-
-          <div className="RGBSliderContainer">
-            <RandomColors />
-          </div>
-        </CurrentColorContext.Provider>
+            <div className="RGBSliderContainer">
+              <RandomColors />
+            </div>
+          </CurrentColorContext.Provider>
+        </div>
         <Footer />
       </div>
     </>

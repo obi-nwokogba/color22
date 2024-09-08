@@ -40,6 +40,11 @@ a:hover {
   padding: 8px 0px 0px 0px;
 }
 
+.app-frame {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .appContainer {
   z-index: 1;
   font-family: "Hanken Grotesk", sans-serif;
@@ -145,14 +150,15 @@ h3.swatchHeader {
 }
 
 .footercontainer {
-  border-top: solid 2px rgba(173, 173, 173, 0.22);
   padding-top: 20px;
-  margin-top: 60px;
+  padding-bottom: 60px;
+  margin-top: 30px;
   font-size: 0.8em;
   text-align: left;
   text-transform: uppercase;
   opacity: 0.6;
   line-height: 1.2em;
+  display: block;
 }
 
 .footercontainer > a {
