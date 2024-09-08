@@ -411,25 +411,40 @@ h3.swatchHeader {
 
 /* FIRST BREAKPOINT */
 @media all and (max-width: 420px) {
+  .sticky-left-menu-box {
+    display: none;
+  }
 }
 
 /* SECOND BREAKPOINT */
 @media all and (max-width: 650px) {
+  .sticky-left-menu-box {
+    display: none;
+  }
 }
 
 /* THIRD BREAKPOINT */
 @media all and (max-width: 900px) {
+  .sticky-left-menu-box {
+    max-width: 190px;
+    background-color: white;
+    zoom: 0.7;
+  }
 }
 
 /* FOURTH BREAKPOINT */
 @media all and (max-width: 1270px) {
   .sticky-left-menu-box {
-    width: 200px;
+    max-width: 140px;
+    zoom: 0.83;
   }
 }
 
 /* FIFTH BREAKPOINT */
 @media all and (max-width: 1600px) {
+  .sticky-left-menu-box {
+    width: 240px;
+  }
 }
 
 /* SIXTH BREAKPOINT */
