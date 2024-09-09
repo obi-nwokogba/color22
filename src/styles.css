@@ -61,7 +61,16 @@ a:hover {
   border: solid 2px rgb(156, 156, 156);
   font-weight: 700;
 }
+.search-sub-container {
+  display: flex;
+  flex-direction: column;
+}
 
+.search-sub-container > span {
+  font-size: 0.2em;
+  margin-top: -25px;
+  margin-left: 130px;
+}
 .search-input-box:focus {
   opacity: 0.7;
   border: solid 3px rgb(156, 156, 156);
@@ -86,7 +95,7 @@ a:hover {
 }
 
 .app-frame {
-  max-width: 700px;
+  max-width: 760px;
   margin: 0 auto;
 }
 

@@ -40,7 +40,6 @@ function App() {
 
     setHSLValue(RGBToHSL(newRValue, newGValue, newBValue));
 
-    // colorHistory.push("latest");
     let currentColorHSLArray = RGBToHSL(newRValue, newGValue, newBValue);
     let currentColorObj = {
       hue: currentColorHSLArray[0],
@@ -147,38 +146,33 @@ function App() {
   }
 
   function validateSearchedColor(e) {
+    console.log(e);
+    if (String(e.target.value).length > 7) {
+      e.target.value = String(e.target.value).slice(0, 7);
+    }
     let currentTypedInValue = e.target.value.toString();
-    setSearchVal(currentTypedInValue);
 
     let hexcolorregex = /^#([0-9a-f]{3}){1,2}$/i;
     let validColorTyped = false;
 
-    if (
-      hexcolorregex.test(currentTypedInValue) ||
-      hexcolorregex.test(`#${currentTypedInValue}`)
-    ) {
+    // Accept colors with or without #
+    if (hexcolorregex.test(currentTypedInValue)) {
       validColorTyped = true;
+    } else if (hexcolorregex.test(`#${currentTypedInValue}`)) {
+      validColorTyped = true;
+      currentTypedInValue = "#" + currentTypedInValue;
     }
+    setSearchVal(currentTypedInValue);
+    setValidColorTyped(validColorTyped);
+  }
 
-    /*
-
-    if (currentSearchText === "") {
-      // setProducts([]);
-      // return;
+  function searchForColor() {
+    if (validColorTyped) {
+      console.log(`Valid color typed and searched for!!`);
+      setCurrentColorHex(searchVal);
+    } else {
+      // TODO: Notify that this isn't a valid HTML Hex Code
     }
-
-    // Key Search Logic
-    const filterBySearch = productList.filter((item) => {
-      if (item.ticker.toLowerCase().includes(currentSearchText) ||
-        item.key.toLowerCase().includes(currentSearchText) ||
-        item.name.toLowerCase().includes(currentSearchText) ||
-        item.name.toLowerCase().includes(currentSearchText)
-      ) {
-        return item.ticker.toString();
-      }
-    });
-    setSearchResult(filterBySearch);
-    setProducts(filterBySearch); */
   }
 
   return (
@@ -194,15 +188,20 @@ function App() {
           />
 
           <div className="search-container">
-            <input
-              defaultValue={currentColorHex}
-              onChange={validateSearchedColor}
-              className="search-input-box"
-            />
+            <div className="search-sub-container">
+              <input
+                defaultValue={currentColorHex}
+                onChange={validateSearchedColor}
+                className="search-input-box"
+                onInput={validateSearchedColor}
+              />
+              <span>VALID COLOR</span> <span>INVALID</span>
+            </div>
             <img
               src="../search-icon.svg"
               alt="Search"
               className="search-icon-button"
+              onClick={searchForColor}
             />
           </div>
         </div>
