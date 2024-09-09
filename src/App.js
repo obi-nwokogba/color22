@@ -16,6 +16,8 @@ export const CurrentColorContext = createContext(null);
 function App() {
   const [currentColorHex, setCurrentColorHex] = useState("#1E7BF3");
   const [colorHistory, setColorHistory] = useState([]);
+  const [searchVal, setSearchVal] = useState("");
+  const [validColorTyped, setValidColorTyped] = useState(false);
 
   // Everytime the a new color is picked/clicked and currentColorHex is changed
   useEffect(() => {
@@ -144,7 +146,40 @@ function App() {
     console.log(`Notification to be shown: ${message}`);
   }
 
-  function validateSearchedColor() {}
+  function validateSearchedColor(e) {
+    let currentTypedInValue = e.target.value.toString();
+    setSearchVal(currentTypedInValue);
+
+    let hexcolorregex = /^#([0-9a-f]{3}){1,2}$/i;
+    let validColorTyped = false;
+
+    if (
+      hexcolorregex.test(currentTypedInValue) ||
+      hexcolorregex.test(`#${currentTypedInValue}`)
+    ) {
+      validColorTyped = true;
+    }
+
+    /*
+
+    if (currentSearchText === "") {
+      // setProducts([]);
+      // return;
+    }
+
+    // Key Search Logic
+    const filterBySearch = productList.filter((item) => {
+      if (item.ticker.toLowerCase().includes(currentSearchText) ||
+        item.key.toLowerCase().includes(currentSearchText) ||
+        item.name.toLowerCase().includes(currentSearchText) ||
+        item.name.toLowerCase().includes(currentSearchText)
+      ) {
+        return item.ticker.toString();
+      }
+    });
+    setSearchResult(filterBySearch);
+    setProducts(filterBySearch); */
+  }
 
   return (
     <>
