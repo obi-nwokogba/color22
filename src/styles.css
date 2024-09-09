@@ -64,12 +64,14 @@ a:hover {
 .search-sub-container {
   display: flex;
   flex-direction: column;
+  margin-top: -7px;
 }
 
 .search-sub-container > span {
   font-size: 0.2em;
-  margin-top: -25px;
-  margin-left: 130px;
+  margin-top: -28px;
+  margin-left: 127px;
+  color: rgba(0, 0, 0, 0.707);
 }
 .search-input-box:focus {
   opacity: 0.7;
@@ -85,13 +87,15 @@ a:hover {
   color: red;
   stroke: red;
   opacity: 0.2;
+  margin-top: 11px;
 }
 
 .search-icon-button:hover {
+  transition: 0.1s;
   opacity: 0.4;
   cursor: pointer;
   fill: #1e7bf3;
-  zoom: 1.03;
+  width: 60px;
 }
 
 .app-frame {
@@ -295,9 +299,9 @@ h3.swatchHeader {
 
 .shadeCell {
   width: 100%;
-  height: 70px;
+  height: 130px;
   margin-right: 10px;
-  border-radius: 5px;
+  border-radius: 7px;
   text-transform: uppercase;
   transition-duration: 500ms;
   transition-property: zoom;
@@ -346,7 +350,7 @@ h3.swatchHeader {
   height: 14px;
   margin: auto;
   border-radius: 7px;
-  margin-top: 28px;
+  margin-top: 80%;
 }
 
 .notification {

@@ -17,7 +17,7 @@ function App() {
   const [currentColorHex, setCurrentColorHex] = useState("#1E7BF3");
   const [colorHistory, setColorHistory] = useState([]);
   const [searchVal, setSearchVal] = useState("");
-  const [validColorTyped, setValidColorTyped] = useState(false);
+  const [validColorTyped, setValidColorTyped] = useState(true);
 
   // Everytime the a new color is picked/clicked and currentColorHex is changed
   useEffect(() => {
@@ -162,6 +162,12 @@ function App() {
       validColorTyped = true;
       currentTypedInValue = "#" + currentTypedInValue;
     }
+
+    // If user entered a valid 3 character Hex Code, lets make it 6
+    if (validColorTyped && currentTypedInValue.length === 4) {
+      currentTypedInValue = convert3To6Hex(currentTypedInValue);
+    }
+
     setSearchVal(currentTypedInValue);
     setValidColorTyped(validColorTyped);
   }
@@ -173,6 +179,13 @@ function App() {
     } else {
       // TODO: Notify that this isn't a valid HTML Hex Code
     }
+  }
+
+  function convert3To6Hex(hex) {
+    if (hex.length !== 4 || hex[0] !== "#") {
+      throw new Error("Invalid 3-character hex code");
+    }
+    return `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
   }
 
   return (
@@ -195,7 +208,17 @@ function App() {
                 className="search-input-box"
                 onInput={validateSearchedColor}
               />
-              <span>VALID COLOR</span> <span>INVALID</span>
+              <span style={{ display: validColorTyped ? "block" : "none" }}>
+                VALID COLOR
+              </span>
+              <span
+                style={{
+                  display: validColorTyped ? "none" : "block",
+                  marginLeft: 157,
+                }}
+              >
+                INVALID
+              </span>
             </div>
             <img
               src="../search-icon.svg"
