@@ -1,15 +1,13 @@
-import { useState, useRef, useEffect, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
 import "./styles.css";
-// import BigTextDisplay from "./BigTextDisplay";
 import ColorSampleCircle from "./ColorSampleCircle";
-import Footer from "./Footer";
 import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
 import { RGBToHSL, rgbToHex, hexToRgb } from "./Utilities";
-import { BigTextDisplay, LeftAnchoredMenu, History } from "../src/components";
+import { BigTextDisplay, Footer, History } from "../src/components";
 
 export const CurrentColorContext = createContext(null);
 
@@ -230,16 +228,11 @@ function App() {
           <CurrentColorContext.Provider
             value={{ currentColorHex, setCurrentColorHex }}
           >
-            <span className="colorHistoryText">
-              HISTORY
-              <span className="lighter2 smaller">{colorHistory.length}</span>
-            </span>
-
             <div className="displayColorContainer">
               <ColorSampleCircle
                 currentColorHex={currentColorHex}
                 onClick={() => {
-                  showNotification("Copied to Cluppy");
+                  showNotification("Copied to Clipboard");
                 }}
               />
 

@@ -1,9 +1,9 @@
-import "./styles.css";
+import "../styles.css";
 
 export default function Footer() {
   return (
     <span className="footercontainer">
-      Last Updated on September 8, 2024
+      Last Updated on September 13, 2024
       <br />
       color22 on GitHUb{" "}
       <a href="https://github.com/obi-nwokogba/color22">
