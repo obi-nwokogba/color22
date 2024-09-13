@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, createContext } from "react";
 
 import "./styles.css";
-import BigTextDisplay from "./BigTextDisplay";
+// import BigTextDisplay from "./BigTextDisplay";
 import ColorSampleCircle from "./ColorSampleCircle";
 import Footer from "./Footer";
 import RandomColors from "./RandomColors";
@@ -9,7 +9,7 @@ import RGBSlider from "./RGBSlider";
 import Shades from "./Shades";
 import Variants from "./Variants";
 import { RGBToHSL, rgbToHex, hexToRgb } from "./Utilities";
-import { LeftAnchoredMenu, History } from "../src/components";
+import { BigTextDisplay, LeftAnchoredMenu, History } from "../src/components";
 
 export const CurrentColorContext = createContext(null);
 
@@ -191,8 +191,6 @@ function App() {
   return (
     <>
       <div className="app-frame">
-        <LeftAnchoredMenu />
-
         <div className="logo-search-header">
           <img
             className="color22HeaderLogo"
