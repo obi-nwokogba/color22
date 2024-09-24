@@ -1,5 +1,5 @@
-import ShadeCell from "./ShadeCell";
-import "./styles.css";
+import ShadeCell from "../ShadeCell";
+import "../styles.css";
 
 export default function RandomColors() {
   const randomInteger = (min, max) => {
@@ -60,8 +60,11 @@ export default function RandomColors() {
     <>
       <div className="palette-header-container">
         <div className="palette-header-text">RANDOM COLORS</div>
-        <div> <button className="button1">create more colors</button></div>
+        <div>
+          {" "}
+          <button className="button1">create more colors</button>
         </div>
+      </div>
 
       {/* First Row of Random Colors */}
       <div className="shadesContainer">

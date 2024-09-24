@@ -2,11 +2,16 @@ import { useState, useEffect, createContext } from "react";
 
 import "./styles.css";
 import ColorSampleCircle from "./ColorSampleCircle";
-import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
 import Variants from "./Variants";
 import { RGBToHSL, rgbToHex, hexToRgb } from "./Utilities";
-import { BigTextDisplay, Footer, History, Shades } from "../src/components";
+import {
+  BigTextDisplay,
+  Footer,
+  History,
+  RandomColors,
+  Shades,
+} from "../src/components";
 
 export const CurrentColorContext = createContext(null);
 
