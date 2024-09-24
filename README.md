@@ -19,7 +19,8 @@ You can use color22 easily in your browser at this URL: [https://color22.com](ht
 - Change the page background color when mouse pointer hovers over a color.
 - Allow color history to persist by saving it in cookies.
 - Add button to copy all color panels as string arrays - right now you can copy all colors in 'History'.
+- Generate Color themes centered around the current color.
 
 ### Last Updated
 
-September 8,2024
+September 13,2024

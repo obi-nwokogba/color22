@@ -2,7 +2,6 @@ html {
   font-family: "Hanken Grotesk", sans-serif;
   box-sizing: border-box;
   font-size: 15px;
-  background-color: #ebebeb;
   font-weight: 400;
 }
 
@@ -10,6 +9,7 @@ body {
   font-family: "Hanken Grotesk", sans-serif;
   box-sizing: border-box;
   font-weight: 400;
+  background-color: #ebebeb;
 }
 
 a:hover {

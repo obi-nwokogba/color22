@@ -4,10 +4,9 @@ import "./styles.css";
 import ColorSampleCircle from "./ColorSampleCircle";
 import RandomColors from "./RandomColors";
 import RGBSlider from "./RGBSlider";
-import Shades from "./Shades";
 import Variants from "./Variants";
 import { RGBToHSL, rgbToHex, hexToRgb } from "./Utilities";
-import { BigTextDisplay, Footer, History } from "../src/components";
+import { BigTextDisplay, Footer, History, Shades } from "../src/components";
 
 export const CurrentColorContext = createContext(null);
 
@@ -186,6 +185,10 @@ function App() {
     return `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`;
   }
 
+  function togglePageBackground(bgColor) {
+    document.body.style.backgroundColor = bgColor ? currentColorHex : "#ebebeb";
+  }
+
   return (
     <>
       <div className="app-frame">
@@ -231,6 +234,8 @@ function App() {
             <div className="displayColorContainer">
               <ColorSampleCircle
                 currentColorHex={currentColorHex}
+                onMouseEnter={togglePageBackground(0)}
+                onMouseLeave={togglePageBackground(1)}
                 onClick={() => {
                   showNotification("Copied to Clipboard");
                 }}
